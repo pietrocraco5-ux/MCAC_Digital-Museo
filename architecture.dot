@@ -1,0 +1,10 @@
+digraph MCAC {
+  graph [rankdir=LR,bgcolor="white",pad="0.35",nodesep="0.6",ranksep="0.7",fontname="DejaVu Sans",label="MCAC DIGITAL | Architettura applicativa",labelloc=t,fontsize=18,fontcolor="#194c44"];
+  node [shape=box,style="rounded,filled",fontname="DejaVu Sans",fontsize=11,penwidth=1.4,color="#b2cec0",fillcolor="#eaf4ec",fontcolor="#214d44",margin="0.18,0.13"];
+  browser[label="BROWSER / FRONT-END\nHTML · CSS · JavaScript\nCatalogo, eventi, form"];
+  api[label="LIVELLO HTTP\nFlask (app.py)\noppure server standard"];
+  logic[label="BUSINESS LOGIC\ncore.py\nAutenticazione, disponibilità,\nregole, dashboard"];
+  db[label="DATABASE SQLite\nUtenti, opere, eventi,\nprenotazioni, feedback",fillcolor="#f7f2df",color="#c4b073"];
+  browser->api[dir=both,label="JSON / HTTP",color="#578c77",fontname="DejaVu Sans",fontsize=10];
+  api->logic[dir=both,color="#578c77"];logic->db[dir=both,label="SQL parametrizzato",color="#578c77",fontname="DejaVu Sans",fontsize=9];
+}

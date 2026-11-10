@@ -1,0 +1,28 @@
+test_01_health (test_api.APITest.test_01_health) ... ok
+test_02_catalog_and_events (test_api.APITest.test_02_catalog_and_events) ... ok
+test_03_dashboard_admin_only (test_api.APITest.test_03_dashboard_admin_only) ... ok
+test_04_registration_and_login (test_api.APITest.test_04_registration_and_login) ... ok
+test_05_duplicate_email (test_api.APITest.test_05_duplicate_email) ... ok
+test_06_password_too_short (test_api.APITest.test_06_password_too_short) ... ok
+test_07_invalid_login (test_api.APITest.test_07_invalid_login) ... ok
+test_08_booking_requires_login (test_api.APITest.test_08_booking_requires_login) ... ok
+test_09_new_booking_uses_capacity (test_api.APITest.test_09_new_booking_uses_capacity) ... ok
+test_10_duplicate_booking (test_api.APITest.test_10_duplicate_booking) ... ok
+test_11_booking_capacity_error (test_api.APITest.test_11_booking_capacity_error) ... ok
+test_12_cancel_booking (test_api.APITest.test_12_cancel_booking) ... ok
+test_13_rebook_after_cancel (test_api.APITest.test_13_rebook_after_cancel) ... ok
+test_14_feedback_requires_confirmed_booking (test_api.APITest.test_14_feedback_requires_confirmed_booking) ... ok
+test_15_invalid_rating (test_api.APITest.test_15_invalid_rating) ... ok
+test_16_admin_create_event (test_api.APITest.test_16_admin_create_event) ... ok
+test_17_admin_create_work (test_api.APITest.test_17_admin_create_work) ... ok
+test_18_logout (test_api.APITest.test_18_logout) ... ok
+test_19_sql_injection_is_data (test_api.APITest.test_19_sql_injection_is_data) ... ok
+test_20_dashboard_formula (test_api.APITest.test_20_dashboard_formula) ... ok
+test_21_bad_input (test_api.APITest.test_21_bad_input) ... ok
+test_22_unknown_event (test_api.APITest.test_22_unknown_event) ... ok
+test_23_simultaneous_booking_does_not_oversell (test_api.APITest.test_23_simultaneous_booking_does_not_oversell) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 9.135s
+
+OK

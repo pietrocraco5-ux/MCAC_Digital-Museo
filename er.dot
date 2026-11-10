@@ -1,0 +1,15 @@
+digraph ER {
+ graph [rankdir=LR,bgcolor=white,pad="0.3",nodesep="0.45",ranksep="0.9",label="MCAC DIGITAL | Modello entità-relazione",labelloc=t,fontname="DejaVu Sans",fontsize=18,fontcolor="#194c44"];
+ node [shape=record,style="rounded,filled",fillcolor="#eef5ef",color="#8bb3a3",fontcolor="#203d36",fontname="DejaVu Sans",fontsize=11];
+ users[label="{USERS|id (PK)\lname\lemail (UNIQUE)\lpassword_hash\lrole\l}"];
+ events[label="{EVENTS|id (PK)\ltitle\lkind\lstarts_at\lcapacity\lstatus\l}"];
+ bookings[label="{BOOKINGS|id (PK)\luser_id (FK)\levent_id (FK)\lseats\lstatus\l}",fillcolor="#e4eee9"];
+ feedback[label="{FEEDBACK|id (PK)\luser_id (FK)\levent_id (FK)\lrating\lcomment\l}"];
+ sessions[label="{SESSIONS|token_hash (PK)\luser_id (FK)\lexpires_at\l}"];
+ works[label="{WORKS|id (PK)\ltitle\lauthor\lyear\lcategory\lroom\l}",fillcolor="#f8f1df"];
+ users->bookings[label="1:N",color="#628d7d",fontname="DejaVu Sans"];
+ events->bookings[label="1:N",color="#628d7d",fontname="DejaVu Sans"];
+ users->feedback[label="1:N",color="#628d7d",fontname="DejaVu Sans"];
+ events->feedback[label="1:N",color="#628d7d",fontname="DejaVu Sans"];
+ users->sessions[label="1:N",color="#628d7d",fontname="DejaVu Sans"];
+}

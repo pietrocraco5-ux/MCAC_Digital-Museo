@@ -1,0 +1,55 @@
+{
+  "description": "Esecuzione reale richieste HTTP contro server standard locale, con dataset simulato",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/works",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/events",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/login",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard (anonimo)",
+      "http_status": 401,
+      "pass": true
+    },
+    {
+      "method": "POST",
+      "path": "/api/logout",
+      "http_status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "path": "/api/dashboard (token revocato)",
+      "http_status": 401,
+      "pass": true
+    }
+  ],
+  "passed": 8,
+  "total": 8
+}

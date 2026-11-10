@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: MCAC Digital REST API
+  version: 1.0.0
+  description: API didattiche del Museo Civico SIMULATO delle Arti e della Cultura di Napoli. Tutti i dati demo sono inventati.
+servers:
+  - url: http://127.0.0.1:5000
+    description: Server di test locale (non esporre su Internet)
+security: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+  schemas:
+    Error:
+      type: object
+      properties:
+        error: {type: string}
+    User:
+      type: object
+      properties:
+        id: {type: integer}
+        name: {type: string}
+        email: {type: string, format: email}
+        role: {type: string, enum: [visitor, admin]}
+    Event:
+      type: object
+      properties:
+        id: {type: integer}
+        title: {type: string}
+        kind: {type: string}
+        starts_at: {type: string, example: '2026-11-15T10:00'}
+        capacity: {type: integer}
+        available: {type: integer}
+        reserved: {type: integer}
+paths:
+  /api/health:
+    get:
+      summary: Verifica stato applicativo
+      responses:
+        '200': {description: Stato OK}
+  /api/works:
+    get:
+      summary: Elenco pubblico delle opere
+      responses:
+        '200': {description: Array items di opere}
+    post:
+      summary: Crea un'opera (solo amministratore)
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, author, year, category, room, description]
+              properties:
+                title: {type: string}
+                author: {type: string}
+                year: {type: integer}
+                category: {type: string}
+                room: {type: string}
+                description: {type: string}
+      responses:
+        '201': {description: Opera creata}
+        '403': {description: Non amministratore}
+  /api/events:
+    get:
+      summary: Elenco eventi con disponibilità aggiornate
+      responses:
+        '200': {description: Array items di eventi}
+    post:
+      summary: Crea un evento (solo amministratore)
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, kind, starts_at, duration_minutes, capacity, description]
+              properties:
+                title: {type: string}
+                kind: {type: string}
+                starts_at: {type: string}
+                duration_minutes: {type: integer, minimum: 15, maximum: 600}
+                capacity: {type: integer, minimum: 1, maximum: 500}
+                description: {type: string}
+      responses:
+        '201': {description: Evento creato}
+        '403': {description: Non amministratore}
+  /api/events/{id}:
+    get:
+      summary: Dettaglio singolo evento
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: integer}
+      responses:
+        '200': {description: Dettaglio evento}
+        '404': {description: Evento inesistente}
+  /api/register:
+    post:
+      summary: Crea un account visitatore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name: {type: string, minLength: 2}
+                email: {type: string, format: email}
+                password: {type: string, minLength: 10}
+      responses:
+        '201': {description: Registrazione completata}
+        '409': {description: Email già usata}
+  /api/login:
+    post:
+      summary: Login, ricezione bearer token con scadenza 12 ore
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: {type: string, format: email}
+                password: {type: string}
+      responses:
+        '200': {description: Token e profilo utente}
+        '401': {description: Credenziali errate}
+  /api/logout:
+    post:
+      summary: Revoca token di sessione
+      security: [{bearerAuth: []}]
+      responses:
+        '200': {description: Sessione chiusa}
+        '401': {description: Non autenticato}
+  /api/me:
+    get:
+      summary: Profilo autenticato
+      security: [{bearerAuth: []}]
+      responses:
+        '200': {description: Dati pubblici del profilo}
+        '401': {description: Non autenticato}
+  /api/bookings:
+    get:
+      summary: Prenotazioni del solo utente autenticato
+      security: [{bearerAuth: []}]
+      responses:
+        '200': {description: Array items di prenotazioni}
+    post:
+      summary: Prenota da 1 a 6 posti con verifica capienza transazionale
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event_id, seats]
+              properties:
+                event_id: {type: integer}
+                seats: {type: integer, minimum: 1, maximum: 6}
+      responses:
+        '201': {description: Prenotazione confermata}
+        '400': {description: Dati non corretti}
+        '401': {description: Non autenticato}
+        '409': {description: Posti esauriti o prenotazione duplicata}
+  /api/bookings/{id}:
+    delete:
+      summary: Cancella una prenotazione di cui si è proprietari
+      security: [{bearerAuth: []}]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: integer}
+      responses:
+        '200': {description: Prenotazione cancellata}
+        '404': {description: Prenotazione non trovata o non propria}
+  /api/feedback:
+    post:
+      summary: Feedback per un evento con prenotazione confermata
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [event_id, rating]
+              properties:
+                event_id: {type: integer}
+                rating: {type: integer, minimum: 1, maximum: 5}
+                comment: {type: string, maxLength: 500}
+      responses:
+        '201': {description: Feedback salvato}
+        '403': {description: Prenotazione confermata mancante}
+        '409': {description: Feedback già inserito}
+  /api/dashboard:
+    get:
+      summary: Indicatori aggregati (solo amministratore)
+      security: [{bearerAuth: []}]
+      responses:
+        '200': {description: Conteggi, percentuali, medie e distribuzioni}
+        '403': {description: Accesso vietato}
+  /api/admin/bookings:
+    get:
+      summary: Ultime 200 prenotazioni con informazioni utenti (solo admin)
+      security: [{bearerAuth: []}]
+      responses:
+        '200': {description: Array items prenotazioni}
+        '403': {description: Accesso vietato}

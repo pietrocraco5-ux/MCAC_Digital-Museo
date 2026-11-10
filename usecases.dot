@@ -1,0 +1,8 @@
+digraph UC {
+ graph [rankdir=LR,bgcolor=white,pad="0.35",ranksep="1.2",nodesep="0.3",label="MCAC DIGITAL | Casi d'uso",labelloc=t,fontname="DejaVu Sans",fontsize=18,fontcolor="#194c44"];
+ node [fontname="DejaVu Sans",fontsize=11];
+ visitor[shape=box,style="rounded,filled",fillcolor="#e4eee9",color="#91b7a4",label="VISITATORE"];
+ admin[shape=box,style="rounded,filled",fillcolor="#e4eee9",color="#91b7a4",label="AMMINISTRATORE"];
+ {node[shape=ellipse,style=filled,fillcolor="#f7faf5",color="#b9cfbd"];catalog[label="Consultare catalogo"];events[label="Consultare eventi"];signup[label="Registrarsi / Accedere"];booking[label="Prenotare / Cancellare"];feedback[label="Inviare feedback"];dashboard[label="Visualizzare dashboard"];manage[label="Inserire eventi e opere"]}
+ visitor->catalog;visitor->events;visitor->signup;visitor->booking;visitor->feedback;admin->dashboard;admin->manage;admin->events;
+}

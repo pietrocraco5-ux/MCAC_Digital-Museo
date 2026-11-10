@@ -1,0 +1,99 @@
+{
+  "users": 22,
+  "works": 12,
+  "events": 8,
+  "bookings": 43,
+  "cancelled": 0,
+  "seats_booked": 85,
+  "feedback_count": 17,
+  "rating_mean": 4.24,
+  "total_capacity": 270,
+  "occupancy_percent": 31.5,
+  "by_event": [
+    {
+      "id": 1,
+      "title": "Napoli tra arte e memoria",
+      "reserved": 13,
+      "capacity": 30,
+      "occupancy_percent": 43.3
+    },
+    {
+      "id": 2,
+      "title": "Laboratorio colori del Mediterraneo",
+      "reserved": 16,
+      "capacity": 24,
+      "occupancy_percent": 66.7
+    },
+    {
+      "id": 3,
+      "title": "Storie della città",
+      "reserved": 4,
+      "capacity": 45,
+      "occupancy_percent": 8.9
+    },
+    {
+      "id": 4,
+      "title": "Sculture e materiali",
+      "reserved": 16,
+      "capacity": 25,
+      "occupancy_percent": 64.0
+    },
+    {
+      "id": 5,
+      "title": "Fotografia e memoria",
+      "reserved": 9,
+      "capacity": 28,
+      "occupancy_percent": 32.1
+    },
+    {
+      "id": 6,
+      "title": "Notte al museo",
+      "reserved": 9,
+      "capacity": 50,
+      "occupancy_percent": 18.0
+    },
+    {
+      "id": 7,
+      "title": "Catalogare il patrimonio",
+      "reserved": 13,
+      "capacity": 36,
+      "occupancy_percent": 36.1
+    },
+    {
+      "id": 8,
+      "title": "Percorsi per le famiglie",
+      "reserved": 5,
+      "capacity": 32,
+      "occupancy_percent": 15.6
+    }
+  ],
+  "by_kind": [
+    {
+      "kind": "Visita guidata",
+      "booking_count": 17,
+      "seats": 34
+    },
+    {
+      "kind": "Laboratorio",
+      "booking_count": 11,
+      "seats": 25
+    },
+    {
+      "kind": "Conferenza",
+      "booking_count": 9,
+      "seats": 17
+    },
+    {
+      "kind": "Evento",
+      "booking_count": 6,
+      "seats": 9
+    }
+  ],
+  "rating_distribution": {
+    "1": 0,
+    "2": 0,
+    "3": 3,
+    "4": 7,
+    "5": 7
+  }
+}

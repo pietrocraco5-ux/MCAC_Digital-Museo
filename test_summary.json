@@ -1,0 +1,9 @@
+{
+  "date": "2026-11-08",
+  "data_type": "dataset interamente simulato",
+  "automatic_domain_tests": {"total": 23, "passed": 23, "failed": 0, "method": "Python unittest"},
+  "real_http_smoke_tests": {"total": 8, "passed": 8, "failed": 0, "server": "Python http.server adapter"},
+  "visual_browser_render": {"screens": 5, "javascript_errors": 0, "mode": "sorgenti HTML/CSS/JS del progetto con risposte JSON API simulate dal database locale"},
+  "flask_adapter_executed": false,
+  "flask_adapter_note": "Il framework Flask non era installabile nell'ambiente di generazione. L'adapter Flask e il file requirements.txt sono inclusi, ma le verifiche HTTP sono state effettuate con il server Python alternativo, che utilizza lo stesso core."
+}
